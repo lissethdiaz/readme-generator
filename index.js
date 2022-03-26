@@ -11,7 +11,7 @@ const questions = [
       if (titleInput) {
         return true;
       } else {
-        console.log('Please enter a title for your project')
+        console.log('Please enter a title for your project');
         return false;
       }
     }
@@ -20,18 +20,18 @@ const questions = [
     type: 'input',
     name: 'description',
     message: 'Enter a description for your project. (Required)',
-    validate: desciptionInput => {
+    validate: descriptionInput => {
       if (descriptionInput) {
         return true;
       } else {
-        console.log('Please enter a description for your project')
+        console.log('Please enter a description for your project');
         return false;
       }
     }
   },
   {
     type: 'input',
-    name: 'installation',
+    name:  'installation',
     message: 'Enter installation instructions'
   },
   {
@@ -42,7 +42,7 @@ const questions = [
   {
     type: 'input',
     name: 'contributors',
-    message: 'List those who contributed to your project'
+    message: "List those who contributed to your project"
   },
   {
     type: 'input',
@@ -55,20 +55,20 @@ const questions = [
     message: 'What is your github username?'
   },
   {
-    type: 'input',
-    name: 'email',
-    message: 'What is your email?'
-  },
+  type: 'input',
+  name: 'email',
+  message: 'What is your email?',
+},
 ];
 
 function writeToFile(fileName, data) {
   return new Promise((resolve, reject) => {
-    fs.writeFile(filename, data, err => {
+    fs.writeFile(fileName, data, err => {
       if (err) {
         reject(err);
         return;
       }
-      resolve ({ message: 'Your project README.md has been created! Please look in the dist folder.'})
+      resolve ({ message: "Your project's README.md has been created! Please look in the dist folder." });
     });
   });
 };
@@ -76,8 +76,8 @@ function writeToFile(fileName, data) {
 function init() {
   return inquirer
     .prompt(questions)
-    .then(inputData => {
-      return generateMarkdown(inputData);
+    .then(readmeData => {
+      return generateMarkdown(readmeData);
     })
     .then(data => {
       return writeToFile('./dist/README.md', data)
@@ -88,6 +88,6 @@ function init() {
     .catch(err => {
       console.log(err)
     })
-};
+}
 
 init();
