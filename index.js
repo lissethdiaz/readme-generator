@@ -6,12 +6,28 @@ const questions = [
   {
     type: 'input',
     name: 'title',
-    message: 'What is the title of your project?'
+    message: 'What is the title of your project? (Required)',
+    validate: titleInput => {
+      if (titleInput) {
+        return true;
+      } else {
+        console.log('Please enter a title for your project')
+        return false;
+      }
+    }
   },
   {
     type: 'input',
     name: 'description',
-    message: 'Enter a description for your project'
+    message: 'Enter a description for your project. (Required)',
+    validate: desciptionInput => {
+      if (descriptionInput) {
+        return true;
+      } else {
+        console.log('Please enter a description for your project')
+        return false;
+      }
+    }
   },
   {
     type: 'input',
@@ -45,7 +61,6 @@ const questions = [
   },
 ];
 
-// TODO: Create a function to write README file
 function writeToFile(fileName, data) {
   return new Promise((resolve, reject) => {
     fs.writeFile(filename, data, err => {
